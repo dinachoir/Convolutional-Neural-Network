@@ -34,7 +34,7 @@ def walk_through_dir(dir_path):
     number of files (images) in each directory
   """
 
-  for dirpath, dirnames, filenames in os.walk("dir_path"):
+  for dirpath, dirnames, filenames in os.walk(dir_path):
     print(f"There are {len(dirnames)} directories and {len(filenames)} images in '{dirpath}'")
 
 # function to import an image and resize it to be able to fit in the model
