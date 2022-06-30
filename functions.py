@@ -201,6 +201,10 @@ def create_confusion_matrix(y_true, y_pred, classes=None, figsize=(10,10), text_
   ax.xaxis.set_label_position("bottom")
   ax.xaxis.tick_bottom()
 
+  # rotate xticks for readability
+  plt.xticks(rotation=70, fontsize=text_size)
+  plt.yticks(fontsize=text_size)
+
   # Set the threshold for different colors
   threshold = (cm.max() + cm.min())/2
 
