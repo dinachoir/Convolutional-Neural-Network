@@ -295,3 +295,34 @@ def create_tensorboard_callback(dir_name, experiment_name):
   )
   print(f"Saving Tensorboard log files to {log_dir}")
   return tensorboard_callback
+
+
+# Function to evaluate accuracy, presicion, recall, and f1-score of a binary classification model
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+
+def evaluate_model(y_true, y_pred):
+  """
+  Calculate model accuracy, presicion, recall, and f1-score of a binary classification model.
+
+  Args:
+  y_true : true labels (1D array)
+  y_pred : predicted labels (1D array)
+
+  Return a dictionary of accuracy, presicion, recall, and f1-score 
+  """
+  # calculate accuracy
+  model_accuracy = accuracy_score(y_true, y_pred) * 100
+  model_precision, model_recall, model_f1, _ = precision_recall_fscore_support(y_true, y_pred, average="weighted")
+  model_evaluation = {"accuracy": model_accuracy,
+                      "precision": model_precision,
+                      "recall": model_recall,
+                      "f1": model_f1}
+
+
+# Function to compare 2 model's performances
+
+def compare_baseline_to_new_model(baseline_evaluation, new_model_evaluation):
+  for key, value in baseline_evaluation.items():
+    print(f"Baseline {key}: {value:.2f}, New_model {key}: {new_model_evaluation[key]:.2f}, Difference: {new_model_evaluation[key]-value:.2f}")
+
+  return model_evaluation
